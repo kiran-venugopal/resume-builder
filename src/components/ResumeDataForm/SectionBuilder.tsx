@@ -6,8 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "../ui/accordion";
-import { Input } from "../ui/input";
-import { Label } from "../ui/label";
+import RenderForm from "./RenderForm";
 
 type Props = {
   sectionDetail: SectionType;
@@ -19,15 +18,7 @@ const SectionBuilder = ({ sectionDetail }: Props) => {
       <AccordionItem value={sectionDetail.id}>
         <AccordionTrigger>{sectionDetail.title}</AccordionTrigger>
         <AccordionContent className="p-2">
-          <div>
-            <Label htmlFor="sectionTitle">Section name</Label>
-            <Input
-              id="sectionTitle"
-              value={sectionDetail.title}
-              title="Section"
-              className="bg-background"
-            />
-          </div>
+          <RenderForm sectionId={sectionDetail.id} />
         </AccordionContent>
       </AccordionItem>
     </Accordion>
