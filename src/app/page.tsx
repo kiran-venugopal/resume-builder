@@ -14,11 +14,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="relative min-h-screen flex flex-col items-center justify-center bg-gray-950 text-gray-50 overflow-x-hidden">
-      {/* Subtle background shapes */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute left-1/2 top-1/4 -translate-x-1/2 w-[400px] h-[400px] bg-blue-100/20 rounded-full blur-2xl" />
-        <div className="absolute right-0 bottom-0 w-[250px] h-[250px] bg-yellow-100/20 rounded-full blur-xl" />
-      </div>
       {/* Header */}
       <header className="w-full flex justify-between items-center px-6 py-4 max-w-5xl z-10">
         <span className="text-xl font-bold tracking-tight text-gray-200">
@@ -38,7 +33,7 @@ export default function Home() {
       </header>
       {/* Hero */}
       <section className="z-10 flex flex-col items-center justify-center text-center mt-16 mb-8">
-        <h1 className="text-3xl md:text-5xl font-bold text-gray-100 mb-4">
+        <h1 className="text-3xl md:text-5xl font-bold text-gray-200 mb-4">
           Build Your <span className="text-yellow-200">Resume</span>
         </h1>
         <p className="text-base md:text-lg text-gray-400 max-w-xl mb-6 font-normal">
@@ -74,7 +69,7 @@ export default function Home() {
         <div className="grid md:grid-cols-3 gap-6 text-left">
           <Card>
             <CardHeader>
-              <Badge variant="default">Guided Resume Builder</Badge>
+              <Badge variant="secondary">Guided Resume Builder</Badge>
             </CardHeader>
             <CardContent>
               <span className="text-gray-400 text-sm">
@@ -95,7 +90,7 @@ export default function Home() {
           </Card>
           <Card>
             <CardHeader>
-              <Badge variant="default">ATS Scan & Suggestions</Badge>
+              <Badge variant="secondary">ATS Scan & Suggestions</Badge>
             </CardHeader>
             <CardContent>
               <span className="text-gray-400 text-sm">
@@ -116,7 +111,7 @@ export default function Home() {
           </Card>
           <Card>
             <CardHeader>
-              <Badge variant="default">Freemium Model</Badge>
+              <Badge variant="secondary">Freemium Model</Badge>
             </CardHeader>
             <CardContent>
               <span className="text-gray-400 text-sm">
@@ -144,8 +139,12 @@ export default function Home() {
         </h2>
         <Tabs defaultValue="free" className="w-full">
           <TabsList className="flex justify-center mb-6">
-            <TabsTrigger value="free">Free</TabsTrigger>
-            <TabsTrigger value="pro">Pro</TabsTrigger>
+            <TabsTrigger className="px-6" value="free">
+              Free
+            </TabsTrigger>
+            <TabsTrigger className="px-6" value="pro">
+              Pro
+            </TabsTrigger>
           </TabsList>
           <TabsContent value="free">
             <Card className="text-center">

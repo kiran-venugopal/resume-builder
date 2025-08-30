@@ -9,6 +9,7 @@ import {
   Text,
   StyleSheet,
 } from "@react-pdf/renderer";
+import ResumeDataForm from "./ResumeDataForm/ResumeDataForm";
 
 const styles = StyleSheet.create({
   page: {
@@ -100,9 +101,11 @@ const styles = StyleSheet.create({
 
 export default function ResumeEditor() {
   return (
-    <div className="flex w-full bg-background h-screen">
-      <div className="w-[400px]">sidenav</div>
-      <PDFViewer className="grow bg-white h-screen">
+    <div className="flex w-full bg-white h-screen">
+      <div className="w-[40vw]">
+        <ResumeDataForm />
+      </div>
+      <PDFViewer className="grow h-screen">
         <Document>
           <Page size="A4" style={styles.page}>
             {/* Header */}
