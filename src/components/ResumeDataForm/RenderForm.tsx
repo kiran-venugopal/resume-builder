@@ -2,6 +2,7 @@ import React from "react";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { useResumeStore } from "@/zustand/useResumeStore";
+import RichTextExample from "./RTE";
 
 type Props = {
   sectionId: string;
@@ -9,6 +10,7 @@ type Props = {
 
 const RenderForm = ({ sectionId }: Props) => {
   const { resumeData, setResumeData } = useResumeStore();
+
   const sectionDetail = resumeData.sectionDetails[sectionId];
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,7 +28,7 @@ const RenderForm = ({ sectionId }: Props) => {
   };
 
   return (
-    <div>
+    <div className="list-inside">
       <Label htmlFor="sectionTitle">Section name</Label>
       <Input
         id="sectionTitle"
@@ -35,6 +37,8 @@ const RenderForm = ({ sectionId }: Props) => {
         className="bg-background"
         onChange={handleTitleChange}
       />
+      <Label htmlFor="sectionTitle">Summary</Label>
+      <RichTextExample />
     </div>
   );
 };

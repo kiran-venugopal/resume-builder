@@ -36,7 +36,7 @@ export default function ResumeEditor() {
       <div className="w-[40vw]">
         <ResumeDataForm />
         <button
-          className="mb-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700"
+          className="m-4 px-4 py-2 bg-yellow-400 text-black rounded hover:bg-blue-700"
           onClick={handleDownload}
         >
           Download PDF

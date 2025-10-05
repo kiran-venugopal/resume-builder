@@ -1,11 +1,13 @@
+"use client";
+
 import React, { useEffect, useRef } from "react";
 import { createRoot } from "react-dom/client";
 import ViewerContent from "./ViewerContent";
 
 const PDFViewer = () => {
-  const ref = useRef(document.createElement("iframe"));
+  const ref = useRef<HTMLIFrameElement | null>(null);
   useEffect(() => {
-    const element = ref.current.contentDocument?.body;
+    const element = ref.current?.contentDocument?.body;
     if (!element || element.children.length) {
       return;
     }
@@ -15,9 +17,10 @@ const PDFViewer = () => {
         .resume-page{
             box-shadow:0 4px 15px rgba(0, 0, 0, 0.15);
             margin: 20px auto;
+
         }
     `;
-    ref.current.contentDocument?.head.append(style);
+    ref.current?.contentDocument?.head.append(style);
 
     createRoot(element).render(<ViewerContent />);
   }, []);
@@ -26,12 +29,14 @@ const PDFViewer = () => {
     <iframe
       style={{
         width: "904px", // A4 width at 96dpi
-        maxHeight: "100vh",
-        overflow: "auto",
+        height: "100%",
+        overflow: "hidden",
       }}
       ref={ref}
       id="pdfView"
-    />
+    >
+      <body></body>
+    </iframe>
   );
 };
 

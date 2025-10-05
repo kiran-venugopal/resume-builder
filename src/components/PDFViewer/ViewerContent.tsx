@@ -1,6 +1,6 @@
+import React from "react";
 import { SectionType, WorkExperienceSection } from "@/zustand/types";
 import { useResumeStore } from "@/zustand/useResumeStore";
-import React from "react";
 
 type Props = {
   section: SectionType & WorkExperienceSection;
@@ -193,86 +193,83 @@ export function SectionRenderer({ section }: Props) {
   return null;
 }
 
+const PAGE_HEIGHT = 1123; // A4 height at 96 dpi
+
 const ViewerContent = () => {
   const { resumeData } = useResumeStore();
+  console.log({ resumeData });
+
+  // Render paginated pages now that heights are known
   return (
-    <div
-      style={{
-        background: "#fff",
-        padding: "32px 24px",
-        fontSize: "12px",
-        color: "#222",
-        minHeight: "1123px", // A4 height at 96dpi
-        width: "794px", // A4 width at 96dpi
-        fontFamily: "Arial, Helvetica, sans-serif",
-        boxSizing: "border-box",
-      }}
-      className="resume-page"
-    >
+    <>
       <style>
-        {` body{
-                margin:0;
-            }`}
+        {`
+        body{
+            margin:0px;
+        }
+        `}
       </style>
+
       <div
         style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          marginBottom: "12px",
-          paddingBottom: "8px",
-          borderBottom: "1px solid #222",
           background: "#fff",
+          padding: "32px 24px",
+          fontSize: 12,
           color: "#222",
+          height: PAGE_HEIGHT,
+          width: 794,
+          fontFamily: "Arial, Helvetica, sans-serif",
+          boxSizing: "border-box",
+          marginBottom: 40,
+          overflow: "hidden",
         }}
+        className="resume-page"
       >
         <div
           style={{
-            fontSize: "24px",
-            fontWeight: "bold",
-            marginBottom: "4px",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            marginBottom: 12,
+            paddingBottom: 8,
+            borderBottom: "1px solid #222",
+            background: "#fff",
             color: "#222",
           }}
         >
-          {resumeData.name ?? ""}
-        </div>
-        <div
-          style={{
-            fontSize: "12px",
-            fontWeight: "bold",
-            marginBottom: "2px",
-            color: "#222",
-          }}
-        >
-          {resumeData.titles?.join(" | ") ?? ""}
-        </div>
-        <div
-          style={{
-            fontSize: "10px",
-            marginBottom: "2px",
-            color: "#222",
-          }}
-        >
-          {[
-            resumeData.location,
-            resumeData.email,
-            resumeData.phone,
-            resumeData.socialMedia?.map((s) => s.label).join(" | "),
-          ]
-            .filter(Boolean)
-            .join(" | ")}
+          <div
+            style={{
+              fontSize: 24,
+              fontWeight: "bold",
+              marginBottom: 4,
+              color: "#222",
+            }}
+          >
+            {resumeData.name ?? ""}
+          </div>
+          <div
+            style={{
+              fontSize: 12,
+              fontWeight: "bold",
+              marginBottom: 2,
+              color: "#222",
+            }}
+          >
+            {resumeData.titles?.join(" | ") ?? ""}
+          </div>
+          <div style={{ fontSize: 10, marginBottom: 2, color: "#222" }}>
+            {[
+              resumeData.location,
+              resumeData.email,
+              resumeData.phone,
+              resumeData.socialMedia?.map((s) => s.label).join(" | "),
+            ]
+              .filter(Boolean)
+              .join(" | ")}
+          </div>
         </div>
       </div>
-      {resumeData.sections.map((section) => (
-        <SectionRenderer
-          key={section}
-          section={
-            resumeData.sectionDetails[section] as SectionType &
-              WorkExperienceSection
-          }
-        />
-      ))}
-    </div>
+    </>
   );
 };
 
