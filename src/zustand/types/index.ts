@@ -1,63 +1,47 @@
-export interface SocialMedia {
+export type SocialMediaItem = {
   type: string;
   url: string;
   label: string;
-}
+};
 
-export interface ResumeSectionBase {
-  id: string;
+export type Entry = {
+  title: string;
+  subTitle?: string;
+  location?: string;
+  startDate?: string;
+  endDate?: string;
+  summary?: Record<string, unknown>;
+};
+
+export type BaseSection = {
   title: string;
   type: string;
-  summary?: Record<string, object>;
-}
+  id: string;
+};
 
-export interface ExperienceSubSection {
-  title: string;
-  company: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  isActive: boolean;
-  summary: Record<string, object>;
-}
+export type SummarySection = BaseSection & {
+  type: "summary";
+  summary: Record<string, unknown>;
+};
 
-export interface WorkExperienceSection extends ResumeSectionBase {
-  subSections: ExperienceSubSection[];
-}
+export type WithEntriesSection = BaseSection & {
+  type: "withEntries";
+  entries: Entry[];
+};
 
-export interface EducationSubSection {
-  title: string;
-  company: string;
-  location: string;
-  startDate: string;
-  endDate: string;
-  isActive: boolean;
-  summary: Record<string, object>;
-}
+export type SectionDetail = SummarySection | WithEntriesSection;
 
-export interface EducationSection extends ResumeSectionBase {
-  subSections: EducationSubSection[];
-}
+export type SectionDetails = {
+  [key: string]: SectionDetail;
+};
 
-export type SectionType =
-  | ResumeSectionBase
-  | WorkExperienceSection
-  | EducationSection;
-
-export interface SectionDetails {
-  profSummary: ResumeSectionBase;
-  workExperience: WorkExperienceSection;
-  education: EducationSection;
-  [key: string]: ResumeSectionBase | WorkExperienceSection | EducationSection;
-}
-
-export interface ResumeData {
+export type ResumeData = {
   name: string;
   titles: string[];
   location: string;
   email: string;
   phone: string;
-  socialMedia: SocialMedia[];
+  socialMedia: SocialMediaItem[];
   sections: string[];
   sectionDetails: SectionDetails;
-}
+};

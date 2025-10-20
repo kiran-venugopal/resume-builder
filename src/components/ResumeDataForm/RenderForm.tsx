@@ -12,6 +12,7 @@ const RenderForm = ({ sectionId }: Props) => {
   const { resumeData, setResumeData } = useResumeStore();
 
   const sectionDetail = resumeData.sectionDetails[sectionId];
+  console.log({sectionDetail})
 
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTitle = e.target.value;
@@ -28,8 +29,9 @@ const RenderForm = ({ sectionId }: Props) => {
   };
 
   return (
-    <div className="list-inside">
-      <Label htmlFor="sectionTitle">Section name</Label>
+    <div className="list-inside flex flex-col gap-2">
+      <div>
+        <Label htmlFor="sectionTitle">Section name</Label>
       <Input
         id="sectionTitle"
         value={sectionDetail.title}
@@ -37,8 +39,11 @@ const RenderForm = ({ sectionId }: Props) => {
         className="bg-background"
         onChange={handleTitleChange}
       />
-      <Label htmlFor="sectionTitle">Summary</Label>
+      </div>
+     <div>
+       <Label htmlFor="sectionTitle">Summary</Label>
       <RichTextExample />
+     </div>
     </div>
   );
 };

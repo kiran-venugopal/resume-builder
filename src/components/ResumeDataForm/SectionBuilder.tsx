@@ -1,4 +1,4 @@
-import { SectionType } from "@/zustand/types";
+import { SectionDetail } from "@/zustand/types";
 import React from "react";
 import {
   Accordion,
@@ -9,7 +9,7 @@ import {
 import RenderForm from "./RenderForm";
 
 type Props = {
-  sectionDetail: SectionType;
+  sectionDetail: SectionDetail;
 };
 
 const SectionBuilder = ({ sectionDetail }: Props) => {

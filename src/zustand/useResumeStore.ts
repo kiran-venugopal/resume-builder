@@ -18,47 +18,54 @@ const initialResumeData: ResumeData = {
   sectionDetails: {
     profSummary: {
       title: "Professional Summary",
-      type: "profSummary",
+      type: "summary",
       id: "profSummary",
       summary: {},
     },
     workExperience: {
       title: "WORK EXPERIENCE",
-      type: "workExperience",
+      type: "withEntries",
       id: "workExperience",
-      subSections: [
+      entries: [
         {
           title: "Marketing Manager",
-          company: "Company Name",
+          subTitle: "Company Name",
           location: "Australia",
           startDate: "01/01/2022",
           endDate: "",
-          isActive: true,
           summary: {},
         },
       ],
     },
     education: {
       title: "Education",
-      type: "education",
+      type: "withEntries",
       id: "education",
-      subSections: [
+      entries: [
         {
           title: "Course Name",
-          company: "College Name",
+          subTitle: "College Name",
           location: "Australia",
           startDate: "01/01/2022",
           endDate: "",
-          isActive: true,
           summary: {},
         },
       ],
     },
     uuid1: {
+      title: "Education",
+      type: "withEntries",
       id: "uuid1",
-      title: "Some title",
-      summary: {},
-      type: "custom",
+      entries: [
+        {
+          title: "Course Name",
+          subTitle: "College Name",
+          location: "Australia",
+          startDate: "01/01/2022",
+          endDate: "",
+          summary: {},
+        },
+      ],
     },
   },
 };
@@ -66,9 +73,17 @@ const initialResumeData: ResumeData = {
 type State = {
   resumeData: ResumeData;
   setResumeData: (resumeData: ResumeData) => void;
+  updatePersonalInfo: (personalInfo: Partial<Pick<ResumeData, 'name' | 'titles' | 'location' | 'email' | 'phone'>>) => void;
 };
 
 export const useResumeStore = create<State>((set) => ({
   resumeData: initialResumeData,
   setResumeData: (resumeData: ResumeData) => set({ resumeData }),
+  updatePersonalInfo: (personalInfo) => 
+    set((state) => ({
+      resumeData: {
+        ...state.resumeData,
+        ...personalInfo
+      }
+    })),
 }));
